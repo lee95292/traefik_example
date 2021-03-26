@@ -1,0 +1,8 @@
+[http.services]
+  [http.services.vscode.loadBalancer]
+    [[http.services.vscode.loadBalancer.servers]]
+      url = "http://203.254.143.236:8080"
+[http.routers]
+  [http.routers.vscode]
+    rule = "Host(`vscode.mglee.dev`)"
+    service = "vscode"
