@@ -1,24 +1,24 @@
 [api]
   dashboard = true
-  #insecure = true
+  insecure = true
 
 [entryPoints]
-  [entryPoints.http]
+  [entryPoints.web]
     address = ":80"
 
-  [entryPoints.https]
+  [entryPoints.websecure]
     address = ":443"
 
-    [entryPoints.http.http.redirections]
-      [entryPoints.http.http.redirections.entryPoint]
-        to = "https"
+#    [entryPoints.http.http.redirections]
+#      [entryPoints.http.http.redirections.entryPoint]
+#        to = "https"
 
 
 [certificatesResolvers.global-resolver.acme]
   email = "lee95292@naver.com"
-  storage = "/etc/traefik/letsencrypt_acme.json"
+  storage = "/etc/traefik/acme.json"
   [certificatesResolvers.global-resolver.acme.httpchallenge]
-    entryPoint = "https"
+    entryPoint = "websecure"
   
 [providers]
   [providers.docker]

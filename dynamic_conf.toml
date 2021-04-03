@@ -1,34 +1,9 @@
-[http.services]
-  [http.services.vscode.loadBalancer]
-    [[http.services.vscode.loadBalancer.servers]]
-      url = "http://203.254.143.236:8080"
-      
-[http.routers]
-  [http.routers.mglee-dev-gateway]
-    entryPoints = ["http", "https"]
-    middlewares = ["redirect"]
+[http]
+  [http.services]
+    [http.services.vscode.loadBalancer]
+      [[http.services.vscode.loadBalancer.servers]]
+        port = 5050
+
+  [http.routers.vscode]
     rule = "Host(`vscode.mglee.dev`)"
     service = "vscode"
-    [http.routers.mglee-dev-gateway.tls]
-      # 참고 - https://blusky10.tistory.com/352
-      # openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mglee.dev.key -out mglee.dev.crt
-      [[tls.certificates]]
-#        certFile = "/etc/traefik/private/mglee.dev.crt"
-#        keyFile = "/etc/traefik/private/mglee.dev.key"
-        certFile = "/etc/traefik/private/vscode.mglee.dev.crt"
-        keyFile = "/etc/traefik/private/vscode.mglee.dev.key"
-        
-#      certResolver  = "global-resolver"
-#      [[http.routers.mglee-dev-gateway.tls.domains]]
-#        main = "vscode.mglee.dev"
-#        sans = ["*.mglee.dev"]
-
-  [http.middlewares]
-    [http.middlewares.redirect.redirectScheme]
-      scheme = "https"
-      permanent = true
-
-
-#  [http.routers.vscode]
-#    rule = "Host(`vscode.mglee.dev`)"
-#    service = "vscode"
