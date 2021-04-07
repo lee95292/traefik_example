@@ -9,6 +9,9 @@ services:
       - "443:443"
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
-      - "./:/etc/traefik"
+      - ./:/etc/traefik
+      - ./log:/var/log/traefik
     labels:
       - traefik.http.routers.traefik-gateway.rule=Host(`traefik.mglee.dev`)
+      - traefik.http.routers.traefik-gateway.tls.certResolver=gateResolver
+      - traefik.http.services.traefik-gateway.loadbalancer.server.port=8080

@@ -1,9 +1,0 @@
-[http]
-  [http.services]
-    [http.services.vscode.loadBalancer]
-      [[http.services.vscode.loadBalancer.servers]]
-        port = 5050
-
-  [http.routers.vscode]
-    rule = "Host(`vscode.mglee.dev`)"
-    service = "vscode"

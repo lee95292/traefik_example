@@ -1,0 +1,37 @@
+api:
+  dashboard: true
+  insecure: true
+  debug: true
+
+entryPoints:
+  http:
+    address: ":80"
+#    http:
+#      redirections:
+#        entryPoint:
+#          to: https
+
+  https:
+    address: ":443"
+
+certificatesResolvers:
+  gateResolver:
+    acme:
+      email: lee95292@naver.com
+      storage: /etc/traefik/acme.json
+      httpChallenge:
+        entryPoint: http
+
+
+accesslog:
+  filePath: /var/log/traefik/accesslog.log
+log:
+  level: INFO
+  filePath: /var/log/traefik/systemlog.log 
+  
+providers:
+  file:
+    filename: /etc/traefik/dynamic_conf.yaml
+    watch: true
+  docker: 
+    network: traefik_default

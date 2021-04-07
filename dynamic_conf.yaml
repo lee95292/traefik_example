@@ -1,0 +1,12 @@
+http:
+  services:
+    vscode:
+      loadBalancer:
+        servers:
+        - url: "http://203.254.143.236:5050"
+  routers:
+    vscode:
+      rule: "Host(`vscode.mglee.dev`)"
+      service: vscode
+      tls:
+        certResolver: gateResolver
