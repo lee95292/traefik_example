@@ -10,10 +10,13 @@ entryPoints:
 #      redirections:
 #        entryPoint:
 #          to: https
-
   https:
     address: ":443"
 
+#****************https://doc.traefik.io/traefik/user-guides/docker-compose/acme-dns/ **********************
+#
+#   Error - 203.254.143.236:80 접근 불가능 - smartXfilter.
+#
 certificatesResolvers:
   gateResolver:
     acme:
